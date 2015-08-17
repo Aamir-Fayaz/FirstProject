@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html ng-app = "serviceApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../bower_components/angular/angular.js"></script>
+     <script src="../scripts/app.js"></script>
+    <script src="../scripts/services/TestService.js"></script>
+    <script src="../scripts/factories/TestFactory.js"></script>
+    <script src="../scripts/controllers/TestController.js"></script>
+</head>
+<body>
+    <div ng-controller="TestController">
+            From Factory : {{fromFactory}} <br />
+            From Service : {{fromService}}
+    
+    <br />
+    <h3>---------------------------------------</h3>
+    <h3>Employees From factory</h3>
+    <div ng-repeat="employee in employees">
+        {{employee.id}} &nbsp;&nbsp;{{employee.name}}<br />
+    </div>
+
+    <br />
+    <h3>---------------------------------------</h3>
+        <h3>Employees From Service</h3>
+        <div ng-repeat="employeeInfo in employeeList">
+            {{employeeInfo.id}} &nbsp;&nbsp;{{employeeInfo.name}}<br />
+        </div>
+
+     <br />
+     <h3>---------------------------------------</h3>
+    </div>
+    <div ng-controller="TestServiceController">
+        <h3>Service Id From Test Controller</h3>
+        <span> name :</span> {{sharedArr.name}}
+    </div>
+
+    <br />
+    <h3>---------------------------------------</h3>
+    <div ng-controller="CalculatorController">
+        <h3>Arithmetic Operations Using Services</h3>
+        Enter a number:
+        <input type="number" ng-model="number" />
+        <button ng-click="doSquare()">X<sup>2</sup></button>
+        <button ng-click="doCube()">X<sup>3</sup></button>
+
+        <div>Answer: {{answer}}</div>
+
+        <br />
+        <h3>---------------------------------------</h3>
+        <div ng-controller="ContactController">
+        <h3>CRUD Using Service</h3>
+        <form>
+            <label>Name</label>
+            <input type="text" name="name" ng-model="newcontact.name" />
+            <label>Email</label>
+            <input type="text" name="email" ng-model="newcontact.email" />
+            <label>Phone</label>
+            <input type="text" name="phone" ng-model="newcontact.phone" />
+            <input type="hidden" ng-model="newcontact.id" />
+            <input type="button" value="Save" ng-click="saveContact()" />
+        </form>
+        <br />
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Name</th>&nbsp;&nbsp;&nbsp;
+                    <th>Email</th>&nbsp;&nbsp;&nbsp;
+                    <th>Phone</th>&nbsp;&nbsp;&nbsp;
+                    <th>Action</th>&nbsp;&nbsp;&nbsp;
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in contacts">
+                    <td>{{ contact.name }}</td>&nbsp;&nbsp;&nbsp;
+                    <td>{{ contact.email }}</td>&nbsp;&nbsp;&nbsp;
+                    <td>{{ contact.phone }}</td>&nbsp;&nbsp;&nbsp;
+                    <td>
+                        <a href="" ng-click="edit(contact.id)">edit</a> |
+                        <a href="" ng-click="delete(contact.id)">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+</html>

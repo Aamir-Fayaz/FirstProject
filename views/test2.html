@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="directiveEmp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../bower_components/angular/angular.js"></script>
+</head>
+<body>
+  
+    <h3>Shared Scope Directive</h3>
+    <div ng-controller="Controller" shared-scope></div>
+    <h3>Isolate Scope Directive</h3>
+
+    <div ng-controller="Controller" isolated-scope></div>
+    <script>
+        var app = angular.module("directiveEmp", []);
+        app.controller('Controller', ['$scope', function ($scope) {
+            $scope.customer = { name: 'david', street: '1234 anwyhere St.' };
+        }]);
+
+        app.directive('sharedScope', function () {
+            return {
+                template : 'Name : {{customer.name}}, Street: {{customer.street}}'
+            };
+        });
+
+        app.directive('isolatedScope', function () {
+            return {
+                scope :{}, //isolate scope
+                template: 'Name : {{customer.name}}, Street: {{customer.street}}'
+            };
+        });
+    </script>  
+</body>
+ 
+</html>
